@@ -14,12 +14,14 @@
 <body>
 </script>
   <script src="js/build/three.js"></script>
+  <script src="js/build/three.module.js"></script>
   <script src="js/controls/OrbitControls.js"></script>
   <script src="js/modifiers/TessellateModifier.js"></script>
   <script src="js/objects/Water2.js"></script>
   <script src="js/objects/Reflector.js"></script>
   <script src="js/loaders/OBJLoader.js"></script>
   <script src="js/objects/Refractor.js"></script>
+  <script src="js/objects/Water.js"></script>
 
   <script>
 
@@ -28,7 +30,7 @@
     var orbitable;
     var clock = new THREE.Clock();
 
-    var water;
+    var water, seaweed;
 
     //helper function
     function randomInt (min, max) {
@@ -54,8 +56,6 @@
       //camera
       camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
       camera.position.set(0, 75, 160);
-      //camera.position.z = 200;
-      //camera.lookAt(object);
 
       //controls
       orbitable = new THREE.OrbitControls(camera, renderer.domElement);
@@ -108,18 +108,6 @@
       backWallMirror.position.z = -75;
       scene.add(backWallMirror);
 
-      //bottom
-      // var floorGeom = new THREE.PlaneBufferGeometry(150, 150);
-      // var floorMirror = new THREE.Reflector(floorGeom, {
-      //   clipBias: 0.003,
-      //   textureWidth: window.innerWidth * window.devicePixelRatio,
-      //   textureHeight: window.innerHeight * window.devicePixelRatio,
-      //   color: 0x777777
-      // });
-      // floorMirror.position.y = 0.5;//25.5;
-      // floorMirror.rotateX(-Math.PI / 2);
-      // scene.add(floorMirror);
-
       //generic wall to be reused
       var genWallGeo = new THREE.PlaneBufferGeometry(150, 150);
 
@@ -133,7 +121,6 @@
       ceiling.receiveShadow = true;
       scene.add(ceiling);
 
-
       //floor WHITE
       var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       floor.rotateX(-Math.PI / 2);
@@ -141,10 +128,8 @@
       floor.position.y = -75;
       scene.add(floor);
 
-
       //front White/blue
       var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
-      //frontWall.position.y = 75;
       frontWall.position.z = 75;
       frontWall.rotateY(Math.PI);
       frontWall.reciveShadow = true;
@@ -153,7 +138,6 @@
       //right NOVA blue with light
       var rightWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       rightWall.position.x = 75;
-      //rightWall.position.y = 75;
       rightWall.rotateY(-Math.PI / 2);
       rightWall.receiveShadow = true;
       scene.add(rightWall);
@@ -161,13 +145,12 @@
       //left NOVA blue with light
       var leftWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       leftWall.position.x = -75;
-      //leftWall.position.y = 75;
       leftWall.rotateY(Math.PI / 2);
       leftWall.reciveShadow = true;
       scene.add(leftWall);
 
       /*******************************
-      create water bottom, over Mirror
+      create water bottom
       *******************************/
       var waterGeom = new THREE.PlaneBufferGeometry(150, 150);
       water = new THREE.Water(waterGeom, {
@@ -177,15 +160,31 @@
         textureHeight: 1024,
         flowDirection: new THREE.Vector2(1, 2)
       });
-      //water.position.y = 15;
       water.rotation.x = (Math.PI * (-0.5));
       scene.add(water);
 
-      /***********************************
-      ADDS OCEAN BOTTOM INSTEAD OF Water
-      OCEAN CONTAINS WAVE ACTIONS
-      ***********************************/
+      /************************
+      ADDING 'SEAWEED' TO Scene
+      ************************/
+      var seaweedGeo = new THREE.PlaneBufferGeometry(150, 150);
+      var seaweedTexture = new THREE.CanvasTexture(genTexture());
 
+      for (var i = 0; i < 15; i++) {
+        var seaweedMat = new THREE.MeshBasicMaterial({
+          color: new THREE.Color().setHSL(0.3, 0.75, (i / 15) * 0.4 + 0.1),
+          map: texture,
+          depthTest: false,
+          depthWrite: false,
+          transparent: true
+        });
+
+        var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
+        seaweedMesh.position.y = i * 0.25;
+        seaweedMesh.rotation.x = -Math.PI / 2;
+        scene.add(seaweedMesh);
+      }
+
+      
       /**************************
       ADDS SHARK TO CENTER SCREEN
       **************************/
@@ -197,9 +196,6 @@
         object.position.y = -10;
         scene.add(object);
       });
-
-
-
 
     }
 
