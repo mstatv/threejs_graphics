@@ -21,7 +21,7 @@
   <script src="js/objects/Reflector.js"></script>
   <script src="js/loaders/OBJLoader.js"></script>
   <script src="js/objects/Refractor.js"></script>
-  <script src="js/objects/Water.js"></script>
+  <!--script src="js/objects/Water.js"></script-->
 
   <script>
 
@@ -153,7 +153,7 @@
       create water bottom
       *******************************/
       var waterGeom = new THREE.PlaneBufferGeometry(150, 150);
-      water = new THREE.Water(waterGeom, {
+      water = new THREE.Water2(waterGeom, {
         color: 0xfffff,
         scale: 1,
         textureWidth: 1024,
