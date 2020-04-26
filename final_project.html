@@ -168,6 +168,7 @@
       ************************/
       var seaweedGeo = new THREE.PlaneBufferGeometry(150, 150);
       var seaweedTexture = new THREE.CanvasTexture(genTexture());
+      var seaweed = new THREE.Object3D();
 
       for (var i = 0; i < 15; i++) {
         var seaweedMat = new THREE.MeshBasicMaterial({
@@ -181,8 +182,11 @@
         var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
         seaweedMesh.position.y = i * 0.25;
         seaweedMesh.rotation.x = -Math.PI / 2;
-        scene.add(seaweedMesh);
+        seaweed.add(seaweedMesh);
       }
+
+      seaweed.position.y = -75;
+      scene.add(seaweed);
 
       function genTexture() {
 
