@@ -183,6 +183,8 @@
         seaweedMesh.position.y = i * 0.25;
         seaweedMesh.rotation.x = -Math.PI / 2;
         seaweed.add(seaweedMesh);
+        seaweed.position.x = Math.sin(time * 5) * i * i * 0.005;
+        seaweed.position.z = Math.cos(time * 7) * i * i * 0.005;
       }
 
       seaweed.position.y = -75;
@@ -193,6 +195,7 @@
 				var canvas = document.createElement( 'canvas' );
 				canvas.width = 512;
 				canvas.height = 512;
+
 				var context = canvas.getContext( '2d' );
 				for ( var i = 0; i < 20000; i ++ ) {
 
@@ -256,13 +259,6 @@
       sphL5.position.x = Math.sin(time * 0.7) * 70;
 			sphL5.position.y = Math.cos(time * 0.3) * 60;
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
-
-      // //seaweed movement
-      // for (var i = 0, sl = seaweed.children.length; i < sl; i++) {
-      //   var mesh = seaweed.children[i];
-      //   mesh.position.x = Math.sin( time * 4 ) * i * i * 0.005;
-			// 	mesh.position.z = Math.cos( time * 6 ) * i * i * 0.005;
-      // }
 
       renderer.render(scene, camera);
     }
