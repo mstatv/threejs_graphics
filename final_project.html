@@ -123,11 +123,11 @@
       scene.add(ceiling);
 
       //floor WHITE
-      var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
-      floor.rotateX(-Math.PI / 2);
-      floor.receiveShadow = true;
-      floor.position.y = -75;
-      scene.add(floor);
+      // var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      // floor.rotateX(-Math.PI / 2);
+      // floor.receiveShadow = true;
+      // floor.position.y = -75;
+      // scene.add(floor);
 
       //front White/blue
       var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
@@ -175,7 +175,7 @@
         var seaweedMat = new THREE.MeshBasicMaterial({
           color: new THREE.Color().setHSL(0.3, 0.75, (i / 15) * 0.4 + 0.1),
           //map: seaweedTexture,
-          depthTest: false,
+          depthTest: true,
           depthWrite: true,
           transparent: true
         });
