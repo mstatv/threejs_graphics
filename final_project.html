@@ -125,7 +125,7 @@
       //floor WHITE
       var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       floor.rotateX(-Math.PI / 2);
-      //floor.receiveShadow = true;
+      floor.receiveShadow = true;
       floor.position.y = -75;
       scene.add(floor);
 
@@ -177,7 +177,7 @@
           map: seaweedTexture,
           depthTest: false,
           depthWrite: false,
-          transparent: false
+          transparent: true
         });
 
         var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
@@ -218,7 +218,7 @@
       loader.load('Shark.obj', function (object) {
         object.scale.multiplyScalar(4);
         object.rotateZ = Math.PI / 2;
-        object.position.y = -10;
+        object.position.y = 0;//-10;
         scene.add(object);
       });
 
