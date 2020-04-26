@@ -167,29 +167,29 @@
       /************************
       ADDING 'SEAWEED' TO Scene
       ************************/
-      // var seaweedGeo = new THREE.PlaneBufferGeometry(150, 150);
-      // //var seaweedTexture = new THREE.CanvasTexture(genTexture());
-      // var seaweed = new THREE.Object3D();
-      //
-      // for (var i = 0; i < 25; i++) {
-      //   var seaweedMat = new THREE.MeshBasicMaterial({
-      //     color: new THREE.Color().setHSL(0.3, 0.75, (i / 15) * 0.4 + 0.1),
-      //     //map: seaweedTexture,
-      //     depthTest: false,
-      //     depthWrite: false,
-      //     transparent: true
-      //   });
-      //
-      //   var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
-      //   seaweedMesh.position.y = i * 0.25;
-      //   seaweedMesh.rotation.x = -Math.PI / 2;
-      //   seaweed.add(seaweedMesh);
-      //   seaweed.position.x = Math.sin(time * 5) * i * i * 0.005;
-      //   seaweed.position.z = Math.cos(time * 7) * i * i * 0.005;
-      // }
-      //
-      // seaweed.position.y = -75;
-      // scene.add(seaweed);
+      var seaweedGeo = new THREE.PlaneBufferGeometry(150, 150);
+      //var seaweedTexture = new THREE.CanvasTexture(genTexture());
+      var seaweed = new THREE.Object3D();
+
+      for (var i = 0; i < 25; i++) {
+        var seaweedMat = new THREE.MeshBasicMaterial({
+          color: new THREE.Color().setHSL(0.3, 0.75, (i / 15) * 0.4 + 0.1),
+          //map: seaweedTexture,
+          depthTest: false,
+          depthWrite: false,
+          transparent: true
+        });
+
+        var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
+        seaweedMesh.position.y = i * 0.25;
+        seaweedMesh.rotation.x = -Math.PI / 2;
+        seaweed.add(seaweedMesh);
+        seaweed.position.x = Math.sin(time * 5) * i * i * 0.005;
+        seaweed.position.z = Math.cos(time * 7) * i * i * 0.005;
+      }
+
+      seaweed.position.y = -75;
+      scene.add(seaweed);
 
       // function genTexture() {
       //
