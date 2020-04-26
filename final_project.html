@@ -125,7 +125,7 @@
       //floor WHITE
       var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       floor.rotateX(-Math.PI / 2);
-      floor.receiveShadow = true;
+      //floor.receiveShadow = true;
       floor.position.y = -75;
       scene.add(floor);
 
@@ -177,7 +177,7 @@
           map: seaweedTexture,
           depthTest: false,
           depthWrite: false,
-          transparent: true
+          transparent: false
         });
 
         var seaweedMesh = new THREE.Mesh(seaweedGeo, seaweedMat);
