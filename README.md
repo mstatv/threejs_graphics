@@ -1,3 +1,3 @@
 # Three.js
-### Graphics Projects
+### FINAL Project
 
