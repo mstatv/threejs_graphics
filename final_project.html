@@ -31,7 +31,7 @@
     var clock = new THREE.Clock();
     var time = Date.now() * 0.0025;
     var torusObj, sphereRadius;
-    var bouy;
+    var bLight;
     var water;
     var animation;
 
@@ -85,17 +85,17 @@
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL2);
 
-			sphL3 = new THREE.PointLight(0x80ff80, 2, 90);
+			sphL3 = new THREE.PointLight(0x80ff80, 2, 80);
       sphL3.position.y = 30;
 			// sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
       scene.add(sphL3);
 
-			sphL4 = new THREE.PointLight(0xffffff, 2, 70);
-			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffffff})));
+			sphL4 = new THREE.PointLight(0x0040ff, 2, 70);
+			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL4);
 
-      sphL5 = new THREE.PointLight(0xffffff, 2, 70);
-			sphL5.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffffff})));
+      sphL5 = new THREE.PointLight(0x0040ff, 2, 70);
+			sphL5.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
 
       scene.add(sphL5);
 
@@ -130,28 +130,28 @@
       scene.add(ceiling);
 
       //floor WHITE
-      var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       floor.rotateX(-Math.PI / 2);
       floor.receiveShadow = true;
       floor.position.y = -75;
       scene.add(floor);
 
       //front White/blue
-      var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       frontWall.position.z = 75;
       frontWall.rotateY(Math.PI);
       frontWall.reciveShadow = true;
       scene.add(frontWall);
 
       //right NOVA blue with light
-      var rightWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      var rightWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       rightWall.position.x = 75;
       rightWall.rotateY(-Math.PI / 2);
       rightWall.receiveShadow = true;
       scene.add(rightWall);
 
       //left NOVA blue with light
-      var leftWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      var leftWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       leftWall.position.x = -75;
       leftWall.rotateY(Math.PI / 2);
       leftWall.reciveShadow = true;
@@ -196,61 +196,67 @@
       }
 
       var torusRings = genTorusRingsAndSphere(1, 5);
-      torusRings.position.y = 30;
+      torusRings.position.y = 50;
       scene.add(torusRings);
 
       /************************
       ADD CUBE OBJECT THAT WILL
       FLOAT IN WATER...
       ************************/
-      bouy = new THREE.Group();
+      // bouy = new THREE.Group();
+      //
+      // function getRandomPointOnSphere(rad) {
+      //   rad = rad || 1.0;
+      //   var theta = Math.random() * 2 * Math.PI;
+      //   var phi = Math.acos(2 * Math.random() - 1);
+      //   var x = rad * Math.cos(theta) * Math.sin(phi);
+      //   var y = rad * Math.sin(theta) * Math.sin(phi);
+      //   var z = rad * Math.cos(phi);
+      //   return new THREE.Vector3(x, y, z);
+      // }
+      //
+      // function starburst(n, innerColor, outerColor, rad = 1) {
+      //   let origin = new THREE.Vector3(0, 0, 0);
+      //   let geom = new THREE.Geometry();
+      //   for (let i = 0; i < n; i++) {
+      //     let dest = getRandomPointOnSphere(rad);
+      //     geom.vertices.push(origin, dest);
+      //     geom.colors.push(innerColor, outerColor);
+      //   }
+      //   let args = {
+      //     vertexColors: true,
+      //     linewidth: 2
+      //   };
+      //   let mat = new THREE.LineBasicMaterial(args);
+      //   return new THREE.Line(geom, mat, THREE.LineSegments);
+      // }
+      //
+      // for (var i = 0; i < 100; i++) {
+      //   var innerColor = new THREE.Color(0xffffff);
+      //   var outerColor = new THREE.Color(0xffffff);
+      //   var n = 75;
+      //   var matStar = starburst(n, innerColor, outerColor);
+      //
+      //   matStar.position.x = Math.random() * 5;
+      //   matStar.position.y = Math.random() * 5;
+      //   matStar.position.z = Math.random() * 5;
+      //   matStar.matrixAutoUpdate = false;
+      //   matStar.updateMatrix();
+      //
+      //   bouy.add(matStar);
+      // }
 
-      function getRandomPointOnSphere(rad) {
-        rad = rad || 1.0;
-        var theta = Math.random() * 2 * Math.PI;
-        var phi = Math.acos(2 * Math.random() - 1);
-        var x = rad * Math.cos(theta) * Math.sin(phi);
-        var y = rad * Math.sin(theta) * Math.sin(phi);
-        var z = rad * Math.cos(phi);
-        return new THREE.Vector3(x, y, z);
-      }
+      bouy = new THREE.BoxGeometry(5, 5, 5);
+      bLight = new THREE.PointLight(0xff0000, 2, 50);
+      bLight.add(new THREE.Mesh(bouy, new THREE.MeshBasicMaterial({color: 0xff0000})));
 
-      function starburst(n, innerColor, outerColor, rad = 3) {
-        let origin = new THREE.Vector3(0, 0, 0);
-        let geom = new THREE.Geometry();
-        for (let i = 0; i < n; i++) {
-          let dest = getRandomPointOnSphere(rad);
-          geom.vertices.push(origin, dest);
-          geom.colors.push(innerColor, outerColor);
-        }
-        let args = {
-          vertexColors: true,
-          linewidth: 2
-        };
-        let mat = new THREE.LineBasicMaterial(args);
-        return new THREE.Line(geom, mat, THREE.LineSegments);
-      }
 
-      for (var i = 0; i < 100; i++) {
-        var innerColor = new THREE.Color(0xffffff);
-        var outerColor = new THREE.Color(0xffffff);
-        var n = 25;
-        var matStar = starburst(n, innerColor, outerColor);
+      // bLight.position.x = 50;
+      // bLight.position.y = -5;
+      // bLight.position.z = -50;
+      //bLight.receiveShadow = true;
 
-        matStar.position.x = Math.random() * 10;
-        matStar.position.y = Math.random() * 10;
-        matStar.position.z = Math.random() * 10;
-        matStar.matrixAutoUpdate = false;
-        matStar.updateMatrix();
-
-        bouy.add(matStar);
-      }
-
-      bouy.position.x = 50;
-      bouy.position.y = -5;
-      bouy.position.z = -50;
-
-      scene.add(bouy);
+      scene.add(bLight);
 
       /**************************
       ADDS SHARK TO CENTER SCREEN
@@ -315,8 +321,8 @@
       }
 
       //bouy movement
-      bouy.position.x = Math.sin(time * 0.3) * 55;
-      bouy.position.z = Math.cos(time * 0.3) * 55;
+      bLight.position.x = Math.sin(time * 0.3) * 55;
+      bLight.position.z = Math.cos(time * 0.3) * 55;
       renderer.render(scene, camera);
     }
 
