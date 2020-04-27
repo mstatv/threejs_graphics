@@ -73,24 +73,24 @@
       **************************/
       var sphereForLight = new THREE.SphereBufferGeometry(1, 16, 8);
 
-			sphL1 = new THREE.PointLight(0x0040ff, 1, 70);
+			sphL1 = new THREE.PointLight(0x0040ff, 2, 70);
 			sphL1.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL1);
 
-			sphL2 = new THREE.PointLight(0xffaa00, 1, 70);
+			sphL2 = new THREE.PointLight(0xffaa00, 2, 70);
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL2);
 
       //for rings...
-			sphL3 = new THREE.PointLight(0x80ff80, 1, 70);
+			sphL3 = new THREE.PointLight(0x80ff80, 2, 70);
       sphL3.position.y = 40;
 			scene.add(sphL3);
 
-			sphL4 = new THREE.PointLight(0xffaa00, 1, 70);
+			sphL4 = new THREE.PointLight(0xffaa00, 2, 70);
 			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL4);
 
-      sphL5 = new THREE.PointLight(0x0040ff, 1, 70);
+      sphL5 = new THREE.PointLight(0x0040ff, 2, 70);
 			sphL5.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
 
       scene.add(sphL5);
