@@ -178,11 +178,8 @@
         object.scale.multiplyScalar(4);
         object.rotateZ = Math.PI / 2;
         object.position.y = 0;//-10;
-        object.position.x = Math.cos( time * 0.001 ) * 30;
-				//object.position.y = Math.sin( time * 0.001 ) * 30;
-				object.position.z = Math.sin( time * 0.001 ) * 30;
         scene.add(object);
-
+        animation = object;
       });
 
     }
@@ -225,7 +222,9 @@
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
 
       //SHARK movement
-
+      animation.position.x = Math.cos( time * 0.001 ) * 30;
+      animation.position.y = Math.sin( time * 0.001 ) * 30;
+      animation.position.z = Math.sin( time * 0.001 ) * 30;
 
       renderer.render(scene, camera);
     }
