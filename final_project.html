@@ -31,8 +31,10 @@
     var clock = new THREE.Clock();
     var time = Date.now() * 0.0025;
     var torusObj, sphereRadius;
+    var cubeBouy;
     var water;
     var animation;
+
 
     //helper function
     function randomInt (min, max) {
@@ -83,9 +85,10 @@
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL2);
 
-			// sphL3 = new THREE.PointLight(0x80ff80, 2, 70);
+			sphL3 = new THREE.PointLight(0x80ff80, 2, 90);
+      sphL3.position.y = 30;
 			// sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
-      // scene.add(sphL3);
+      scene.add(sphL3);
 
 			sphL4 = new THREE.PointLight(0xffffff, 2, 70);
 			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffffff})));
@@ -176,18 +179,6 @@
         //torus rings with sphere object creation
         torusObj = new THREE.Object3D();
 
-        // //CREATE Sphere
-        // sphereRadius = radius * (2 / 3);
-        // var sphGeom = new THREE.SphereGeometry(sphereRadius, 10, 32);
-        // var sphMat = new THREE.MeshBasicMaterial({
-        //   color: 0xffffff
-        // });
-        // var centerSphere = new THREE.Mesh(sphGeom, sphMat);
-        // centerSphere.reciveShadow = true;
-        //
-        // //add sphere to obj of function
-        // torusObj.add(centerSphere);
-
         //generate rings according to parameters given by function call
         for (var i = 0; i < numRings; i++) {
           var torusGeom = new THREE.TorusGeometry(radius, 1, 5, 3);
@@ -206,10 +197,24 @@
 
       var torusRings = genTorusRingsAndSphere(1, 5);
       // torusRings.position(new THREE.Vector3(-50, -10, 50));
-      torusRings.position.x = -50;
-      torusRings.position.y = -10;
-      torusRings.position.z = 50;
+      //torusRings.position.x = -50;
+      torusRings.position.y = 30;
+      //torusRings.position.z = 50;
       scene.add(torusRings);
+
+      /************************
+      ADD CUBE OBJECT THAT WILL
+      FLOAT IN WATER...
+      ************************/
+      var cube = new THREE.CubeGeometry(5);
+      var cBouyMat = new THREE.MeshPhongMaterial({color: 0xffffff});
+      var cubeBouy = new THREE.Points(cube, cBouyMat);
+      cubeBouy.position.x = 50;
+      cubeBouy.position.y = 0;
+      cubeBouy.position.z = -50;
+      cubeBouy.receiveShadow = true;
+
+      scene.add(cubeBouy);
 
       /**************************
       ADDS SHARK TO CENTER SCREEN
