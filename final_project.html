@@ -199,7 +199,10 @@
       }
 
       var torusRings = genTorusRingsAndSphere(5, 10);
-      torusRings.position(-50, -10, 50);
+      // torusRings.position(new THREE.Vector3(-50, -10, 50));
+      torusRings.position.x = -50;
+      torusRings.position.y = -10;
+      torusRings.position.z = 50;
       scene.add(torusRings);
 
       /**************************
