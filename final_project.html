@@ -30,7 +30,7 @@
     var orbitable;
     var clock = new THREE.Clock();
     var time = Date.now() * 0.0025;
-    var torusObj, sphereRadius;
+    var torusObj, sphereRadius, spinRings;
     var bLight;
     var water;
     var animation;
@@ -195,9 +195,9 @@
         return torusObj;
       }
 
-      var torusRings = genTorusRingsAndSphere(1, 5);
-      torusRings.position.y = 50;
-      scene.add(torusRings);
+      spinRings = genTorusRingsAndSphere(.5, 5);
+      spinRings.position.y = 50;
+      scene.add(spinRings);
 
       /************************
       ADD CUBE OBJECT THAT WILL
@@ -282,6 +282,10 @@
       bLight.position.z = Math.cos(time * 0.3) * 55;
       bLight.position.y = Math.cos(time * 1.5);
       renderer.render(scene, camera);
+
+      //ringsObj movement
+      spinRings.position.x = Math.cos(time * 0.4) * 40;
+      spinRings.position.z = Math.sin(time * 0.4) * 40;
     }
 
     init();
