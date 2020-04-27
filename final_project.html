@@ -123,11 +123,11 @@
       scene.add(ceiling);
 
       //floor WHITE
-      // var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
-      // floor.rotateX(-Math.PI / 2);
-      // floor.receiveShadow = true;
-      // floor.position.y = -75;
-      // scene.add(floor);
+      var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
+      floor.rotateX(-Math.PI / 2);
+      floor.receiveShadow = true;
+      floor.position.y = -75;
+      scene.add(floor);
 
       //front White/blue
       var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
@@ -178,6 +178,7 @@
         object.rotateZ = Math.PI / 2;
         object.position.y = 0;//-10;
         scene.add(object);
+        return object;
       });
 
     }
@@ -218,6 +219,9 @@
       sphL5.position.x = Math.sin(time * 0.7) * 70;
 			sphL5.position.y = Math.cos(time * 0.3) * 60;
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
+
+      //SHARK movement
+
 
       renderer.render(scene, camera);
     }
