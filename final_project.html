@@ -31,7 +31,7 @@
     var clock = new THREE.Clock();
     var time = Date.now() * 0.0025;
     var torusObj, sphereRadius;
-    var cubeBouy;
+    var bouy;
     var water;
     var animation;
 
@@ -196,25 +196,61 @@
       }
 
       var torusRings = genTorusRingsAndSphere(1, 5);
-      // torusRings.position(new THREE.Vector3(-50, -10, 50));
-      //torusRings.position.x = -50;
       torusRings.position.y = 30;
-      //torusRings.position.z = 50;
       scene.add(torusRings);
 
       /************************
       ADD CUBE OBJECT THAT WILL
       FLOAT IN WATER...
       ************************/
-      var cube = new THREE.CubeGeometry(5);
-      var cBouyMat = new THREE.MeshPhongMaterial({color: 0xffffff});
-      var cubeBouy = new THREE.Points(cube, cBouyMat);
-      cubeBouy.position.x = 50;
-      cubeBouy.position.y = 0;
-      cubeBouy.position.z = -50;
-      cubeBouy.receiveShadow = true;
+      bouy = new THREE.Group();
 
-      scene.add(cubeBouy);
+      function getRandomPointOnSphere(rad) {
+        rad = rad || 1.0;
+        var theta = Math.random() * 2 * Math.PI;
+        var phi = Math.acos(2 * Math.random() - 1);
+        var x = rad * Math.cos(theta) * Math.sin(phi);
+        var y = rad * Math.sin(theta) * Math.sin(phi);
+        var z = rad * Math.cos(phi);
+        return new THREE.Vector3(x, y, z);
+      }
+
+      function starburst(n, innerColor, outerColor, rad = 3) {
+        let origin = new THREE.Vector3(0, 0, 0);
+        let geom = new THREE.Geometry();
+        for (let i = 0; i < n; i++) {
+          let dest = getRandomPointOnSphere(rad);
+          geom.vertices.push(origin, dest);
+          geom.colors.push(innerColor, outerColor);
+        }
+        let args = {
+          vertexColors: true,
+          linewidth: 2
+        };
+        let mat = new THREE.LineBasicMaterial(args);
+        return new THREE.Line(geom, mat, THREE.LineSegments);
+      }
+
+      for (var i = 0; i < 100; i++) {
+        var innerColor = new THREE.Color(0xffffff);
+        var outerColor = new THREE.Color(0xffffff);
+        var n = 25;
+        var matStar = starburst(n, innerColor, outerColor);
+
+        matStar.position.x = Math.random() * 10;
+        matStar.position.y = Math.random() * 10;
+        matStar.position.z = Math.random() * 10;
+        matStar.matrixAutoUpdate = false;
+        matStar.updateMatrix();
+
+        bouy.add(matStar);
+      }
+
+      bouy.position.x = 50;
+      bouy.position.y = -5;
+      bouy.position.z = -50;
+
+      scene.add(bouy);
 
       /**************************
       ADDS SHARK TO CENTER SCREEN
@@ -268,16 +304,6 @@
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
 
       //rings movement
-      //separate sphere from torusObj
-      // var sphereChild = torusObj.children[0];
-      // //movement of sphere at center of torusObj
-      // sphereChild.position.x = Math.sin(time * 1) * 100;
-      // sphereChild.position.y = Math.cos(0);
-      // sphereChild.position.z = 0;
-
-      //loop to iterate through each ring of torusObj
-      //setting rotation speeds for x, y, z
-      //all of which are in relation to the index (i, in this case)
       for (var i = 0; i < torusObj.children.length; i++) {
         //defining a child
         var child = torusObj.children[i];
@@ -286,6 +312,10 @@
         child.rotation.y = time * (i / 10);
         child.rotation.z = time * (i / 10);
       }
+
+      //bouy movement
+      bouy.position.x = Math.sin(time * 0.6) * 50;
+      bouy.position.z = Math.cos(time * 0.6) * 45;
       renderer.render(scene, camera);
     }
 
