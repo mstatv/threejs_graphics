@@ -72,8 +72,8 @@
       add  lights to scene
       **************************/
 
-      var ambientLight = new THREE.AmbientLight(0xb60101, 0.05);
-      scene.add(ambientLight);
+      // var ambientLight = new THREE.AmbientLight(0xb60101, 0.05);
+      // scene.add(ambientLight);
 
       var sphereForLight = new THREE.SphereBufferGeometry(2, 16, 8);
 
@@ -85,10 +85,9 @@
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL2);
 
-			sphL3 = new THREE.PointLight(0x80ff80, 2, 80);
-      sphL3.position.y = 30;
-			// sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
-      scene.add(sphL3);
+			sphL3 = new THREE.PointLight(0x80ff80, 2, 60);
+      sphL3.position.y = 40;
+			scene.add(sphL3);
 
 			sphL4 = new THREE.PointLight(0xffaa00, 2, 70);
 			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
@@ -204,15 +203,8 @@
       FLOAT IN WATER...
       ************************/
       bouy = new THREE.CylinderGeometry(2, 5, 10, 64)//new THREE.BoxGeometry(5, 5, 5);
-      bLight = new THREE.PointLight(0xff0000, 2, 50);
+      bLight = new THREE.PointLight(0xff0000, 2, 60);
       bLight.add(new THREE.Mesh(bouy, new THREE.MeshBasicMaterial({color: 0xff0000})));
-
-
-      // bLight.position.x = 50;
-      // bLight.position.y = -5;
-      // bLight.position.z = -50;
-      //bLight.receiveShadow = true;
-
       scene.add(bLight);
 
       /**************************
@@ -255,10 +247,6 @@
 			sphL2.position.y = Math.sin(time * 0.5) * 60;
 			sphL2.position.z = Math.sin(time * 0.7) * 50;
 
-			// sphL3.position.x = Math.sin(time * 0.7) * 50;
-		  // sphL3.position.y = Math.cos(time * 0.3) * 60;
-			// sphL3.position.z = Math.sin(time * 0.5) * 50;
-
 			sphL4.position.x = Math.sin(time * 0.6) * 50;
 			sphL4.position.y = Math.cos(time * 0.4) * 60;
 			sphL4.position.z = Math.sin(time * 0.2) * 50;
@@ -286,6 +274,10 @@
       //ringsObj movement
       spinRings.position.x = Math.cos(time * 0.4) * 40;
       spinRings.position.z = Math.sin(time * 0.4) * 40;
+
+      //ring light movement
+      sphL3.position.x = Math.cos(time * 0.4) * 40;
+      sphL3.position.z = Math.sin(time * 0.4) * 40;
     }
 
     init();
