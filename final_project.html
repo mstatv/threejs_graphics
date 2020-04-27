@@ -71,9 +71,9 @@
       /**************************
       add  lights to scene
       **************************/
-      var ambientLight = new THREE.AmbientLight(0x696969);
+      var ambientLight = new THREE.AmbientLight(0x696969, 0.5);
       scene.add(ambientLight);
-      
+
       var sphereForLight = new THREE.SphereBufferGeometry(1, 16, 8);
 
 			sphL1 = new THREE.PointLight(0x0040ff, 2, 70);
