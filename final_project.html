@@ -81,8 +81,8 @@
 			sphL1.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL1);
 
-			sphL2 = new THREE.PointLight(0x0040ff, 2, 70);
-			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
+			sphL2 = new THREE.PointLight(0xffaa00, 2, 70);
+			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL2);
 
 			sphL3 = new THREE.PointLight(0x80ff80, 2, 80);
@@ -90,8 +90,8 @@
 			// sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
       scene.add(sphL3);
 
-			sphL4 = new THREE.PointLight(0x0040ff, 2, 70);
-			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
+			sphL4 = new THREE.PointLight(0xffaa00, 2, 70);
+			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL4);
 
       sphL5 = new THREE.PointLight(0x0040ff, 2, 70);
@@ -203,50 +203,7 @@
       ADD CUBE OBJECT THAT WILL
       FLOAT IN WATER...
       ************************/
-      // bouy = new THREE.Group();
-      //
-      // function getRandomPointOnSphere(rad) {
-      //   rad = rad || 1.0;
-      //   var theta = Math.random() * 2 * Math.PI;
-      //   var phi = Math.acos(2 * Math.random() - 1);
-      //   var x = rad * Math.cos(theta) * Math.sin(phi);
-      //   var y = rad * Math.sin(theta) * Math.sin(phi);
-      //   var z = rad * Math.cos(phi);
-      //   return new THREE.Vector3(x, y, z);
-      // }
-      //
-      // function starburst(n, innerColor, outerColor, rad = 1) {
-      //   let origin = new THREE.Vector3(0, 0, 0);
-      //   let geom = new THREE.Geometry();
-      //   for (let i = 0; i < n; i++) {
-      //     let dest = getRandomPointOnSphere(rad);
-      //     geom.vertices.push(origin, dest);
-      //     geom.colors.push(innerColor, outerColor);
-      //   }
-      //   let args = {
-      //     vertexColors: true,
-      //     linewidth: 2
-      //   };
-      //   let mat = new THREE.LineBasicMaterial(args);
-      //   return new THREE.Line(geom, mat, THREE.LineSegments);
-      // }
-      //
-      // for (var i = 0; i < 100; i++) {
-      //   var innerColor = new THREE.Color(0xffffff);
-      //   var outerColor = new THREE.Color(0xffffff);
-      //   var n = 75;
-      //   var matStar = starburst(n, innerColor, outerColor);
-      //
-      //   matStar.position.x = Math.random() * 5;
-      //   matStar.position.y = Math.random() * 5;
-      //   matStar.position.z = Math.random() * 5;
-      //   matStar.matrixAutoUpdate = false;
-      //   matStar.updateMatrix();
-      //
-      //   bouy.add(matStar);
-      // }
-
-      bouy = new THREE.BoxGeometry(5, 5, 5);
+      bouy = new THREE.CylinderGeometry(2, 5, 10, 64)//new THREE.BoxGeometry(5, 5, 5);
       bLight = new THREE.PointLight(0xff0000, 2, 50);
       bLight.add(new THREE.Mesh(bouy, new THREE.MeshBasicMaterial({color: 0xff0000})));
 
@@ -323,6 +280,7 @@
       //bouy movement
       bLight.position.x = Math.sin(time * 0.3) * 55;
       bLight.position.z = Math.cos(time * 0.3) * 55;
+      bLight.position.y = Math.cos(time * 1.5);
       renderer.render(scene, camera);
     }
 
