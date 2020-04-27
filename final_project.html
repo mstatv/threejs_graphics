@@ -117,35 +117,35 @@
       //ceiling and floor geom
       var cfGeo = new THREE.PlaneBufferGeometry(150, 150);
 
-      //top WHITE
+      //ceiling
       var ceiling = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0xffffff}));
       ceiling.position.y = 75;
       ceiling.rotateX(Math.PI / 2);
       ceiling.receiveShadow = true;
       scene.add(ceiling);
 
-      //floor WHITE
+      //floor
       var floor = new THREE.Mesh(cfGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       floor.rotateX(-Math.PI / 2);
       floor.receiveShadow = true;
       floor.position.y = -75;
       scene.add(floor);
 
-      //front White/blue
+      //front
       var frontWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       frontWall.position.z = 75;
       frontWall.rotateY(Math.PI);
       frontWall.reciveShadow = true;
       scene.add(frontWall);
 
-      //right NOVA blue with light
+      //right
       var rightWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       rightWall.position.x = 75;
       rightWall.rotateY(-Math.PI / 2);
       rightWall.receiveShadow = true;
       scene.add(rightWall);
 
-      //left NOVA blue with light
+      //left
       var leftWall = new THREE.Mesh(genWallGeo, new THREE.MeshPhongMaterial({color: 0x696969}));
       leftWall.position.x = -75;
       leftWall.rotateY(Math.PI / 2);
@@ -198,7 +198,7 @@
       ADD CUBE OBJECT THAT WILL
       FLOAT IN WATER...
       ************************/
-      bouy = new THREE.CylinderGeometry(2, 5, 10, 64)//new THREE.BoxGeometry(5, 5, 5);
+      bouy = new THREE.CylinderGeometry(2, 5, 10, 64);
       bLight = new THREE.PointLight(0xff0000, 2, 70);
       bLight.add(new THREE.Mesh(bouy, new THREE.MeshBasicMaterial({color: 0xff0000})));
       scene.add(bLight);
