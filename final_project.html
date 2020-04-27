@@ -30,7 +30,7 @@
     var orbitable;
     var clock = new THREE.Clock();
     var time = Date.now() * 0.0025;
-
+    var torusObj, sphereRadius;
     var water;
     var animation;
 
@@ -168,6 +168,39 @@
       /************************
       //// TODO: add rings to Scene
       ************************/
+      function genTorusRingsAndSphere(radius, numRings) {
+        //torus rings with sphere object creation
+        torusObj = new THREE.Object3D();
+
+        //CREATE Sphere
+        sphereRadius = radius * (2 / 3);
+        var sphGeom = new THREE.SphereGeometry(sphereRadius, 32, 32);
+        var sphMat = new THREE.MeshBasicMaterial({
+          color: 0xffffff
+        });
+        var centerSphere = new THREE.Mesh(sphGeom, sphMat);
+
+        //add sphere to obj of function
+        torusObj.add(centerSphere);
+
+        //generate rings according to parameters given by function call
+        for (var i = 0; i < numRings; i++) {
+          var torusGeom = new THREE.TorusGeometry(radius, 3, 16, 100);
+          var torusColor = new THREE.Color(0xffffff * Math.random()); //.setHSL(randomFloat(0, 1), randomFloat(0.8, 0.95), randomFloat(0.3, 0.7));
+          var torusMat = new THREE.MeshBasicMaterial({
+            color: torusColor
+          });
+          var torusMesh = new THREE.Mesh(torusGeom, torusMat);
+          radius = radius + 6.5;
+
+          torusObj.add(torusMesh);
+        }
+        return torusObj;
+      }
+
+      var torusRings = genTorusRingsAndSphere(5, 10);
+      torusRings.postion(-50, -10, 50);
+      scene.add(torusRings);
 
       /**************************
       ADDS SHARK TO CENTER SCREEN
@@ -177,9 +210,8 @@
       loader.load('Shark.obj', function (object) {
         object.scale.multiplyScalar(4);
         object.rotateZ = Math.PI / 2;
-        object.position.y = 0;//-10;
+        object.position.y = -10;
         scene.add(object);
-        animation = object;
       });
 
     }
@@ -221,11 +253,25 @@
 			sphL5.position.y = Math.cos(time * 0.3) * 60;
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
 
-      //SHARK movement
-      animation.position.x = Math.cos( time * 0.001 ) * 30;
-      animation.position.y = Math.sin( time * 0.001 ) * 30;
-      animation.position.z = Math.sin( time * 0.001 ) * 30;
+      //rings movement
+      //separate sphere from torusObj
+      var sphereChild = torusObj.children[0];
+      //movement of sphere at center of torusObj
+      sphereChild.position.x = Math.sin(timer * 1) * 100;
+      sphereChild.position.y = Math.cos(0);
+      sphereChild.position.z = 0;
 
+      //loop to iterate through each ring of torusObj
+      //setting rotation speeds for x, y, z
+      //all of which are in relation to the index (i, in this case)
+      for (var i = 0; i < torusObj.children.length; i++) {
+        //defining a child
+        var child = torusObj.children[i];
+        //rotation rates for x, y, z axes
+        child.rotation.x = timer * (i / 4);
+        child.rotation.y = timer * (i / 4);
+        child.rotation.z = timer * (i / 4);
+      }
       renderer.render(scene, camera);
     }
 
