@@ -168,6 +168,18 @@
       });
       water.rotation.x = (Math.PI * (-0.5));
       scene.add(water);
+      //underside
+      water2 = new THREE.Water(waterGeom, {
+        color: 0xfffff,
+        scale: 1,
+        textureWidth: 1024,
+        textureHeight: 1024,
+        flowDirection: new THREE.Vector2(1, 2)
+      });
+      water2.rotation.x = (Math.PI * (-0.5));
+      water2.position.y = -3;
+      water2.rotateY(Math.PI);
+      scene.add(water2);
 
       /************************
       adding torus "triangle"
