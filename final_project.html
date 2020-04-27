@@ -261,6 +261,7 @@
         object.scale.multiplyScalar(4);
         object.rotateZ = Math.PI / 2;
         object.position.y = -10;
+        object.position.z = 10;
         scene.add(object);
       });
 
@@ -314,8 +315,8 @@
       }
 
       //bouy movement
-      bouy.position.x = Math.sin(time * 0.6) * 55;
-      bouy.position.z = Math.cos(time * 0.6) * 45;
+      bouy.position.x = Math.sin(time * 0.3) * 55;
+      bouy.position.z = Math.cos(time * 0.3) * 45;
       renderer.render(scene, camera);
     }
 
