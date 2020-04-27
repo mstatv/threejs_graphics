@@ -68,24 +68,27 @@
 
       /**************************
       add  lights to scene
-      will be moved Later
       **************************/
+
+      var ambientLight = new THREE.AmbientLight(0xb60101, 0.05);
+      scene.add(ambientLight);
+
       var sphereForLight = new THREE.SphereBufferGeometry(2, 16, 8);
 
-			sphL1 = new THREE.PointLight(0xff0040, 2, 70);
-			sphL1.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xff0040})));
+			sphL1 = new THREE.PointLight(0x0040ff, 2, 70);
+			sphL1.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL1);
 
 			sphL2 = new THREE.PointLight(0x0040ff, 2, 70);
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL2);
 
-			sphL3 = new THREE.PointLight(0x80ff80, 2, 70);
-			sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
-      scene.add(sphL3);
+			// sphL3 = new THREE.PointLight(0x80ff80, 2, 70);
+			// sphL3.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x80ff80})));
+      // scene.add(sphL3);
 
-			sphL4 = new THREE.PointLight(0xffaa00, 2, 70);
-			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
+			sphL4 = new THREE.PointLight(0xffffff, 2, 70);
+			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffffff})));
       scene.add(sphL4);
 
       sphL5 = new THREE.PointLight(0xffffff, 2, 70);
@@ -166,23 +169,24 @@
       scene.add(water);
 
       /************************
-      //// TODO: add rings to Scene
+      adding torus "triangle"
+      animation to scene
       ************************/
       function genTorusRingsAndSphere(radius, numRings) {
         //torus rings with sphere object creation
         torusObj = new THREE.Object3D();
 
-        //CREATE Sphere
-        sphereRadius = radius * (2 / 3);
-        var sphGeom = new THREE.SphereGeometry(sphereRadius, 10, 32);
-        var sphMat = new THREE.MeshBasicMaterial({
-          color: 0xffffff
-        });
-        var centerSphere = new THREE.Mesh(sphGeom, sphMat);
-        centerSphere.reciveShadow = true;
-
-        //add sphere to obj of function
-        torusObj.add(centerSphere);
+        // //CREATE Sphere
+        // sphereRadius = radius * (2 / 3);
+        // var sphGeom = new THREE.SphereGeometry(sphereRadius, 10, 32);
+        // var sphMat = new THREE.MeshBasicMaterial({
+        //   color: 0xffffff
+        // });
+        // var centerSphere = new THREE.Mesh(sphGeom, sphMat);
+        // centerSphere.reciveShadow = true;
+        //
+        // //add sphere to obj of function
+        // torusObj.add(centerSphere);
 
         //generate rings according to parameters given by function call
         for (var i = 0; i < numRings; i++) {
