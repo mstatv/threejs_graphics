@@ -174,7 +174,7 @@
 
         //CREATE Sphere
         sphereRadius = radius * (2 / 3);
-        var sphGeom = new THREE.SphereGeometry(sphereRadius, 10, 3);
+        var sphGeom = new THREE.SphereGeometry(sphereRadius, 10, 32);
         var sphMat = new THREE.MeshBasicMaterial({
           color: 0xffffff
         });
@@ -186,9 +186,9 @@
 
         //generate rings according to parameters given by function call
         for (var i = 0; i < numRings; i++) {
-          var torusGeom = new THREE.TorusGeometry(radius, 3, 16, 100);
+          var torusGeom = new THREE.TorusGeometry(radius, 1, 5, 3);
           var torusColor = new THREE.Color(0xffffff);// * Math.random()); //.setHSL(randomFloat(0, 1), randomFloat(0.8, 0.95), randomFloat(0.3, 0.7));
-          var torusMat = new THREE.MeshBasicMaterial({
+          var torusMat = new THREE.MeshPhongMaterial({
             color: torusColor
           });
           var torusMesh = new THREE.Mesh(torusGeom, torusMat);
