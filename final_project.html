@@ -260,7 +260,7 @@
       //separate sphere from torusObj
       var sphereChild = torusObj.children[0];
       //movement of sphere at center of torusObj
-      sphereChild.position.x = Math.sin(timer * 1) * 100;
+      sphereChild.position.x = Math.sin(time * 1) * 100;
       sphereChild.position.y = Math.cos(0);
       sphereChild.position.z = 0;
 
@@ -271,9 +271,9 @@
         //defining a child
         var child = torusObj.children[i];
         //rotation rates for x, y, z axes
-        child.rotation.x = timer * (i / 4);
-        child.rotation.y = timer * (i / 4);
-        child.rotation.z = timer * (i / 4);
+        child.rotation.x = time * (i / 4);
+        child.rotation.y = time * (i / 4);
+        child.rotation.z = time * (i / 4);
       }
       renderer.render(scene, camera);
     }
