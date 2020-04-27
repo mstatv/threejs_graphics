@@ -222,14 +222,7 @@
 			sphL5.position.z = Math.sin(time * 0.5) * 50;
 
       //SHARK movement
-      object.positon.set(
-        Math.cos(time * 0.1) * 30,
-        Math.abs(Math.cos(time * 0.2)) * 20 + 5,
-        Math.sin(time * 0.1) * 30
-      );
-
-      object.rotation.y = (Math.PI / 2) - time * 0.1;
-      object.rotation.z = timer * 0.8;
+      
 
       renderer.render(scene, camera);
     }
