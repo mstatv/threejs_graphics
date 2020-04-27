@@ -71,29 +71,26 @@
       /**************************
       add  lights to scene
       **************************/
+      var sphereForLight = new THREE.SphereBufferGeometry(1, 16, 8);
 
-      // var ambientLight = new THREE.AmbientLight(0xb60101, 0.05);
-      // scene.add(ambientLight);
-
-      var sphereForLight = new THREE.SphereBufferGeometry(2, 16, 8);
-
-			sphL1 = new THREE.PointLight(0x0040ff, 2, 70);
+			sphL1 = new THREE.PointLight(0x0040ff, 1, 70);
 			sphL1.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
       scene.add(sphL1);
 
-			sphL2 = new THREE.PointLight(0xffaa00, 2, 70);
+			sphL2 = new THREE.PointLight(0xffaa00, 1, 70);
 			sphL2.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL2);
 
-			sphL3 = new THREE.PointLight(0x80ff80, 2, 60);
+      //for rings...
+			sphL3 = new THREE.PointLight(0x80ff80, 1, 70);
       sphL3.position.y = 40;
 			scene.add(sphL3);
 
-			sphL4 = new THREE.PointLight(0xffaa00, 2, 70);
+			sphL4 = new THREE.PointLight(0xffaa00, 1, 70);
 			sphL4.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0xffaa00})));
       scene.add(sphL4);
 
-      sphL5 = new THREE.PointLight(0x0040ff, 2, 70);
+      sphL5 = new THREE.PointLight(0x0040ff, 1, 70);
 			sphL5.add(new THREE.Mesh(sphereForLight, new THREE.MeshBasicMaterial({color: 0x0040ff})));
 
       scene.add(sphL5);
@@ -111,7 +108,6 @@
         textureHeight: window.innerHeight * window.devicePixelRatio,
         color: 0x889998
       });
-      //backWallMirror.position.y = 75;
       backWallMirror.position.z = -75;
       scene.add(backWallMirror);
 
@@ -203,7 +199,7 @@
       FLOAT IN WATER...
       ************************/
       bouy = new THREE.CylinderGeometry(2, 5, 10, 64)//new THREE.BoxGeometry(5, 5, 5);
-      bLight = new THREE.PointLight(0xff0000, 2, 60);
+      bLight = new THREE.PointLight(0xff0000, 2, 70);
       bLight.add(new THREE.Mesh(bouy, new THREE.MeshBasicMaterial({color: 0xff0000})));
       scene.add(bLight);
 
@@ -239,17 +235,17 @@
       orbitable.update(delta);
 
       //light movement
-      sphL1.position.x = Math.sin(time * 0.6) * 50;
+      sphL1.position.x = Math.sin(time * 0.6) * 40;
 			sphL1.position.y = Math.cos(time * 0.4) * 60;
 			sphL1.position.z = Math.cos(time * 0.2) * 50;
 
 			sphL2.position.x = Math.cos(time * 0.3) * 50;
 			sphL2.position.y = Math.sin(time * 0.5) * 60;
-			sphL2.position.z = Math.sin(time * 0.7) * 50;
+			sphL2.position.z = Math.sin(time * 0.7) * 80;
 
 			sphL4.position.x = Math.sin(time * 0.6) * 50;
 			sphL4.position.y = Math.cos(time * 0.4) * 60;
-			sphL4.position.z = Math.sin(time * 0.2) * 50;
+			sphL4.position.z = Math.sin(time * 0.2) * 70;
 
       sphL5.position.x = Math.sin(time * 0.7) * 70;
 			sphL5.position.y = Math.cos(time * 0.3) * 60;
