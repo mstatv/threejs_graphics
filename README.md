@@ -1,3 +1,3 @@
 # Three.js
-### FINAL Project
+### Graphics Created For University Course
 
