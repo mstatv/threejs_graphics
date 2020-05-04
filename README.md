@@ -1,3 +1,3 @@
 # Three.js
-### Graphics Created For University Course
+### Scenes Created For University Course
 
